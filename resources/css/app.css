@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --scrollbarBg: rgb(255, 255, 255);
+    --scrollbarThumb: #154ec1;
+    --scrollbarWidth: 5px;
+    --scrollbarBorder: 1px solid var(--scrollbarBg);
+}
+
+.scroll-container::-webkit-scrollbar {
+    width: var(--scrollbarWidth);
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    width: var(--scrollbarWidth);
+    background: var(--scrollbarBg);
+    border-radius: var(--scrollbarBorderRadius);
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    width: var(--scrollbarWidth);
+    background-color: var(--scrollbarThumb);
+    border-radius: var(--scrollbarBorderRadius);
+    border: var(--scrollbarBorder);
+}
+
+
+.pages .router-link-active {
+    @apply !text-blue-600 font-bold
+}
+
+.va-modal-entry {
+    /* Ваши собственные стили */
+    display: none;
+    /* Пример: скрыть элемент */
+}
