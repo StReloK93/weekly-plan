@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('drillings', function (Blueprint $table) {
             $table->id();
-            $table->integer('drilling_id');
+            $table->integer('drilling_type_id');
             $table->string('garage_number');
         });
     }

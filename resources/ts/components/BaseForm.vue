@@ -1,6 +1,6 @@
 <template>
    <slot name="button" :onClick="onClick"></slot>
-   <VaModal v-model="model" max-width="460px" no-padding hide-default-actions no-outside-dismiss blur>
+   <VaModal v-model="model" :max-width="props.width" no-padding hide-default-actions no-outside-dismiss blur>
       <VaForm @submit.prevent="handleSubmit" ref="baseForm" class="flex flex-col" @vue:mounted="formMounted">
          <header class="p-3 bg-gray-100 font-semibold text-base">
             {{ title }}
@@ -30,7 +30,8 @@ const props = defineProps({
    toggleAction: { type: String, default: 'message.save' },
    cancelAction: { type: String, default: 'message.close' },
    title: { type: String, required: true },
-   submitMethod: { type: Function, required: true }
+   submitMethod: { type: Function, required: true },
+   width: { type: String, default: '460px' },
 })
 
 function onClick() {

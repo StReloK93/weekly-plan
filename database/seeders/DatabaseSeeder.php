@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             DrillingTypeSeeder::class,
             DrillingSeeder::class,
             TruckAbilitySeeder::class,
+            NormativeSeeder::class,
+            CareerSeeder::class,
         ]);
     }
 }

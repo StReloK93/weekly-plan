@@ -30,7 +30,7 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 import { reactive, onMounted, computed } from 'vue';
 import TruckAbilityRepository from '../TruckAbility/TruckAbilityRepository';
-import TruckTypeRepository from './TruckTypeRepository';
+import TruckTypeRepository from '../TruckType/TruckTypeRepository';
 
 
 const props = defineProps({

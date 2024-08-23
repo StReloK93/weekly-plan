@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->double('speed_per_min', 8, 2);
-            $table->double('pm_in_hour', 8, 2);
             $table->decimal('install', 8, 2);
             $table->double('move', 8, 2);
-            $table->double('timing', 8, 2);
             $table->double('up_down_mast', 8, 2);
             $table->double('montage', 8, 2);
             $table->double('drilling', 8, 2);

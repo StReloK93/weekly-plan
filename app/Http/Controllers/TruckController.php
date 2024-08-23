@@ -9,7 +9,7 @@ use App\Models\Truck;
 class TruckController extends Controller
 {
     public function index(){
-        return Truck::all();
+        return Truck::with(['type'])->get();
     }
 
     public function store(Request $request){

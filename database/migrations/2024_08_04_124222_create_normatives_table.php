@@ -13,25 +13,25 @@ return new class extends Migration
     {
         Schema::create('normatives', function (Blueprint $table) {
             $table->id();
-            $table->double('obed_po', 6, 2);
-            $table->double('eto_po', 6, 2);
-            $table->double('peresmenka_po', 6, 2);
-            $table->double('techno_pereriv_po', 6, 2);
+            $table->double('obed_po', 6, 2)->nullable();
+            $table->double('eto_po', 6, 2)->nullable();
+            $table->double('peresmenka_po', 6, 2)->nullable();
+            $table->double('techno_pereriv_po', 6, 2)->nullable();
 
-            $table->double('techno_pereriv_ac', 6, 2);
-            $table->double('zapravka_ac', 6, 2);
-            $table->double('obed_ac', 6, 2);
-            $table->double('peresmenka_ac', 6, 2);
-            $table->double('rezerv_ac', 6, 2);
-            $table->double('vzriv_ac', 6, 2);
+            $table->double('techno_pereriv_ac', 6, 2)->nullable();
+            $table->double('zapravka_ac', 6, 2)->nullable();
+            $table->double('obed_ac', 6, 2)->nullable();
+            $table->double('peresmenka_ac', 6, 2)->nullable();
+            $table->double('rezerv_ac', 6, 2)->nullable();
+            $table->double('vzriv_ac', 6, 2)->nullable();
 
-            $table->double('speed_ac', 6, 2);
-            $table->double('install_ac', 6, 2);
-            $table->double('download_ac', 6, 2);
-            $table->double('waiting_ac', 6, 2);
+            $table->double('speed_ac', 6, 2)->nullable();
+            $table->double('install_ac', 6, 2)->nullable();
+            $table->double('download_ac', 6, 2)->nullable();
+            $table->double('waiting_ac', 6, 2)->nullable();
 
-            $table->double('gruz_ac', 6, 2);
-            $table->double('full_bort_ac', 6, 2);
+            $table->double('gruz_ac', 6, 2)->nullable();
+            $table->double('full_bort_ac', 6, 2)->nullable();
         });
     }
 

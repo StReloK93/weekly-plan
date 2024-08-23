@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Truck extends Model
 {
@@ -15,4 +16,10 @@ class Truck extends Model
         'garage_number',
         'ability',
     ];
+
+
+    public function type(): HasOne
+    {
+        return $this->hasOne(TruckType::class, 'id', 'truck_type_id');
+    }
 }

@@ -27,6 +27,15 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': '/resources/ts',
+            '@drilling': '/resources/ts/entities/Drilling',
+            '@drilling-type': '/resources/ts/entities/DrillingType',
+            '@excavator': '/resources/ts/entities/Excavator',
+            '@excavator-type': '/resources/ts/entities/ExcavatorType',
+            '@career': '/resources/ts/entities/Career',
+            '@horizon': '/resources/ts/entities/Horizon',
+            '@truck-type': '/resources/ts/entities/TruckType',
+            '@truck': '/resources/ts/entities/Truck',
         },
+        
     },
 });

@@ -1,9 +1,9 @@
 import { RouteRecordRaw } from 'vue-router';
-import GuideTrucksPage from '@/pages/GuideTrucksPage.vue'
-import GuideExcavatorsPage from '@/pages/GuideExcavatorsPage.vue'
-import GuideDrillingsPage from '@/pages/GuideDrillingsPage.vue';
-import GuideCareersPage from '@/pages/GuideCareersPage.vue';
-import GuideNormativesPage from '@/pages/GuideNormativesPage.vue';
+import GuideTrucksPage from '@/pages/GuidePages/GuideTrucksPage.vue'
+import GuideExcavatorsPage from '@/pages/GuidePages/GuideExcavatorsPage.vue'
+import GuideDrillingsPage from '@/pages/GuidePages/GuideDrillingsPage.vue';
+import GuideCareersPage from '@/pages/GuidePages/GuideCareersPage.vue';
+import GuideNormativesPage from '@/pages/GuidePages/GuideNormativesPage.vue';
 
 
 const routes: Array<RouteRecordRaw> = [

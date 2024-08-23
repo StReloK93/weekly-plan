@@ -1,5 +1,6 @@
 export const rule = (text) => [(value) => {
     if (isPlainObject(value)) return true
+    if(typeof value  == 'number') return true
     else return (value && value.length > 0) || text
 }]
 
