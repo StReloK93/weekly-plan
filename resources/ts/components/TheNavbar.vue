@@ -17,7 +17,9 @@
             </RouterLink>
          </VaNavbarItem>
          <VaNavbarItem class="hidden sm:block">
-            {{ t('message.inputpage') }}
+            <RouterLink :to="{ name: 'inputs' }">
+               {{ t('message.inputpage') }}
+            </RouterLink>
          </VaNavbarItem>
          <VaNavbarItem class="hidden sm:block">
             {{ t('message.planpage') }}

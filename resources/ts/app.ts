@@ -16,3 +16,4 @@ createApp(App)
    .use(createVuestic())
    .use(router)
    .mount("#app");
+   

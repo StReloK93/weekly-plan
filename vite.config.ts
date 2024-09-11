@@ -29,12 +29,18 @@ export default defineConfig({
             '@': '/resources/ts',
             '@drilling': '/resources/ts/entities/Drilling',
             '@drilling-type': '/resources/ts/entities/DrillingType',
+            '@drilling-position': '/resources/ts/entities/DrillingPosition',
             '@excavator': '/resources/ts/entities/Excavator',
             '@excavator-type': '/resources/ts/entities/ExcavatorType',
             '@career': '/resources/ts/entities/Career',
             '@horizon': '/resources/ts/entities/Horizon',
             '@truck-type': '/resources/ts/entities/TruckType',
             '@truck': '/resources/ts/entities/Truck',
+            '@movement': '/resources/ts/entities/Movement',
+            '@modules': '/resources/ts/modules',
+            '@excavator-fact': '/resources/ts/entities/ExcavatorFact',
+            '@explosion': '/resources/ts/entities/Explosion',
+            '@excavator-position': '/resources/ts/entities/ExcavatorPosition'
         },
         
     },

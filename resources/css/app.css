@@ -5,7 +5,7 @@
 :root {
     --scrollbarBg: rgb(255, 255, 255);
     --scrollbarThumb: #154ec1;
-    --scrollbarWidth: 5px;
+    --scrollbarWidth: 3px;
     --scrollbarBorder: 1px solid var(--scrollbarBg);
 }
 
@@ -35,4 +35,35 @@
     /* Ваши собственные стили */
     display: none;
     /* Пример: скрыть элемент */
+}
+
+/* Убираем стрелки для всех input с типом number */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    /* Убираем стрелки в Firefox */
+}
+
+.va-scroll-container__content {
+    height: 100% !important;
+}
+
+.thin-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(44, 111, 255) white;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }

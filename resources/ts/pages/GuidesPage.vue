@@ -1,10 +1,10 @@
 <template>
 	<section class="flex">
 		<VaSidebar>
-			<VaSidebarItem v-for="page in guidesPages" :to="{ name: page.path }" :active="$route.name == page.path">
+			<VaSidebarItem v-for="page in childRoutes" :to="{ name: page.name }" :active="$route.name == page.name">
 				<VaSidebarItemContent>
-					<VaIcon :name="page.icon" />
-					<VaSidebarItemTitle>{{ t(page.name) }}</VaSidebarItemTitle>
+					<VaIcon :name="page.meta.icon" />
+					<VaSidebarItemTitle>{{ t(page.meta.text) }}</VaSidebarItemTitle>
 				</VaSidebarItemContent>
 			</VaSidebarItem>
 		</VaSidebar>
@@ -19,15 +19,19 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router';
 const { t } = useI18n({ useScope: 'global' })
+const router = useRouter()
 
-const guidesPages = reactive([
-	{ path: 'trucks-guide', name: 'message.trucks', icon: "local_shipping" },
-	{ path: 'excavators-guide', name: 'message.excavators', icon: "front_loader" },
-	{ path: 'drillings-guide', name: 'message.drillings', icon: "architecture" },
-	{ path: 'careers-guide', name: 'message.careers', icon: "layers" },
-	{ path: 'normatives-guide', name: 'message.normatives', icon: "book" },
-])
+const selectedRoute = router.getRoutes().find(r => r.name === 'guides');
+
+// Получаем дочерние маршруты
+const childRoutes: any = computed(() => {
+   if (selectedRoute) {
+      return selectedRoute.children || [];
+   }
+   return [];
+});
 </script>

@@ -12,7 +12,11 @@ use App\Http\Controllers\DrillingTypeController;
 use App\Http\Controllers\NormativeController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\HorizonController;
-
+use App\Http\Controllers\MovementController;
+use App\Http\Controllers\ExcavatorFactController;
+use App\Http\Controllers\ExplosionController;
+use App\Http\Controllers\DrillingPositionController;
+use App\Http\Controllers\ExcavatorPositionController;
 
 
 
@@ -92,8 +96,43 @@ Route::prefix('horizon')->group(function () {
 });
 
 
+Route::prefix('movement')->group(function () {
+    Route::controller(MovementController::class)->group(function () {
+        Route::get('{type}', 'index');
+        Route::post('{type}', 'update');
+    });
+});
 
 
+
+Route::prefix('excavator-fact')->group(function () {
+    Route::controller(ExcavatorFactController::class)->group(function () {
+        Route::post('', 'index');
+        Route::post('/fact', 'factUpdate');
+        Route::post('/plan', 'planUpdate');
+    });
+});
+
+Route::prefix('explosion')->group(function () {
+    Route::controller(ExplosionController::class)->group(function () {
+        Route::post('', 'index');
+        Route::post('/update', 'update');
+    });
+});
+
+Route::prefix('drilling-position')->group(function () {
+    Route::controller(DrillingPositionController::class)->group(function () {
+        Route::post('', 'index');
+        Route::post('/update', 'update');
+    });
+});
+
+Route::prefix('excavator-position')->group(function () {
+    Route::controller(ExcavatorPositionController::class)->group(function () {
+        Route::post('', 'index');
+        Route::post('/update', 'update');
+    });
+});
 
 
 Route::apiResource('truck-ability', TruckAbilityController::class)->only('index');

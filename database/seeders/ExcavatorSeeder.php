@@ -47,8 +47,6 @@ class ExcavatorSeeder extends Seeder
             [ 'excavator_type_id' => 5, 'garage_number' => 50],
             [ 'excavator_type_id' => 5, 'garage_number' => 51],
             [ 'excavator_type_id' => 5, 'garage_number' => 41],
-            [ 'excavator_type_id' => 5, 'garage_number' => 238],
-
         ]);
     }
 }

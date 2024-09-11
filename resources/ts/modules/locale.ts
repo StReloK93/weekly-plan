@@ -9,6 +9,11 @@ const vuestic = {
 	select: "select",
 	noOptions: "noOptions",
 	progressState: "progressState",
+	nextPeriod: "nextPeriod",
+	toggleDropdown: "toggleDropdown",
+	switchView: "switchView",
+	previousPeriod: "previousPeriod",
+	selectedDate: "selectedDate",
 }
 
 const i18n = createI18n({
@@ -24,6 +29,11 @@ const i18n = createI18n({
 			level: "Уровень",
 			required: "Пожалуйста заполните поля!",
 			horizons: "Горизонты карьеров",
+			movement: {
+				name: "Перегоны",
+				ekg: "Перегоны ЭКГ-5 и ЭКГ-10",
+				gidro: "Перегоны гидравлики",
+			},
 			career: {
 				add: "Добавить карьер",
 				edit: "Изменить карьер",
@@ -35,7 +45,15 @@ const i18n = createI18n({
 				edit: "Изменить горизонт карьера",
 				code: "Код горизонт карьера",
 				name: "Горизонт",
-
+			},
+			inputs: {
+				excavator_facts: "Факт ЭКГ",
+				excavator_positions: "Расстановка ЭКГ",
+				drilling_positions: "Расстановка БУ",
+				timetable_production: "График добычи",
+				explosion_schedule: "График взрывов",
+				plan: "План",
+				fact: "Факт",
 			},
 			normative: {
 				reglament_normatives_po: "Нормативы на регламентированные простои ПО",
@@ -136,6 +154,8 @@ const i18n = createI18n({
 			upper: 'Yuqori',
 			level: "Holati",
 			required: "Iltimos to'ldiring!",
+			horizons: "Gorizontlar",
+			movement: "Ko'chirishlar",
 			message: {
 				search: 'Qidirish',
 				yes: 'Ha',
