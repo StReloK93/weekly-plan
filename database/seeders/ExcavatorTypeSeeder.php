@@ -22,7 +22,9 @@ class ExcavatorTypeSeeder extends Seeder
                 'hard_procent' => 0.85,
                 'normal_time' => 30,
                 'easy_time' => 30,
-                'hard_time' => 43
+                'hard_time' => 43,
+                'count_bucket' => 12,
+                'full_time_ac' => 5.7,
             ],
             [
                 'name' => 'Hitachi-1200/6',
@@ -32,7 +34,9 @@ class ExcavatorTypeSeeder extends Seeder
                 'hard_procent' => 0.55,
                 'normal_time' => 30,
                 'easy_time' => 30,
-                'hard_time' => 36
+                'hard_time' => 36,
+                'count_bucket' => 12,
+                'full_time_ac' => 5,
             ],
             [
                 'name' => 'ЭКГ-10',
@@ -42,7 +46,9 @@ class ExcavatorTypeSeeder extends Seeder
                 'hard_procent' => 0.70,
                 'normal_time' => 30,
                 'easy_time' => 30,
-                'hard_time' => 43
+                'hard_time' => 43,
+                'count_bucket' => 7,
+                'full_time_ac' => 3.2,
             ],
             [
                 'name' => 'Liebher',
@@ -52,7 +58,9 @@ class ExcavatorTypeSeeder extends Seeder
                 'hard_procent' => 0.55,
                 'normal_time' => 30,
                 'easy_time' => 30,
-                'hard_time' => 36
+                'hard_time' => 36,
+                'count_bucket' => 10,
+                'full_time_ac' => 5,
             ],
             [
                 'name' => 'ФРП CAT 700',
@@ -62,7 +70,9 @@ class ExcavatorTypeSeeder extends Seeder
                 'hard_procent' => 0.70,
                 'normal_time' => 30,
                 'easy_time' => 30,
-                'hard_time' => 43
+                'hard_time' => 43,
+                'count_bucket' => 10,
+                'full_time_ac' => 6,
             ],
         ]);
     }

@@ -10,7 +10,7 @@
             </main>
 
             <main v-if="inputFocus" :class="[position ? 'top-full translate-y-px' : 'bottom-full -translate-y-px']"
-               class="absolute  left-0 text-sm w-full bg-white z-50">
+               class="absolute left-0 text-sm max-w-80 bg-white z-50">
 
                <input v-model="filterText" class="bg-transparent outline-none w-full p-1.5 border-b" placeholder="Qidirish">
 

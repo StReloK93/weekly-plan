@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TimetableProduction extends Model
+class InputRuda extends Model
 {
     use HasFactory;
 
 
+    public $timestamps = false;
+
 
     protected $fillable = [
-        'type',
-        'career_id',
-        'y_career_id',
-        'count'
+        'name'
     ];
 }

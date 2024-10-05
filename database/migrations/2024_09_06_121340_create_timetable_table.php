@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('excavator_facts', function (Blueprint $table) {
+        Schema::create('timetables', function (Blueprint $table) {
             $table->id();
-            $table->integer('excavator_id');
+            $table->integer(column: 'horizon_id');
             $table->date('day');
-            $table->double('plan', 8, 2)->nullable();
-            $table->double('fact', 8, 2)->nullable();
+            $table->decimal('first', 8, 2)->nullable();
+            $table->decimal('second', 8, 2)->nullable();
             $table->timestamps();
-            
-            $table->unique(['day', 'excavator_id']);
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('excavator_facts');
+        Schema::dropIfExists('timetables');
     }
 };

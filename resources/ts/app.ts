@@ -9,8 +9,10 @@ import 'material-icons/iconfont/material-icons.css';
 import router from "./router";
 import App from './App.vue'
 import BaseAlert from "./components/BaseAlert.vue";
+import BaseDateInput from "./components/BaseDateInput.vue";
 createApp(App)
    .component('BaseAlert', BaseAlert)
+   .component('BaseDateInput', BaseDateInput)
    .use(createPinia())
    .use(i18n)
    .use(createVuestic())

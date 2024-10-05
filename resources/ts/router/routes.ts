@@ -12,6 +12,8 @@ import InputExcavatorPosition from '@/pages/InputPages/InputExcavatorPosition.vu
 import InputTimetableProduction from '@/pages/InputPages/InputTimetableProduction.vue';
 import InputExplosionSchedule from '@/pages/InputPages/InputExplosionSchedule.vue';
 
+import PlanMiningPosition from '@/pages/PlanPages/PlanMiningPosition.vue';
+import PlanExcavatorTruck from '@/pages/PlanPages/PlanExcavatorTruck.vue';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -98,6 +100,27 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'explosion-schedule',
                 component: InputExplosionSchedule,
                 meta: { text: 'inputs.explosion_schedule', icon: 'alarm_add' }
+            },
+        ]
+    },
+
+    {
+        path: '/plans',
+        name: 'plans',
+        component: () => import('@/pages/PlansPage.vue'),
+        redirect: { name: 'mining-position' },
+        children: [
+            {
+                path: "mining-position",
+                name: 'mining-position',
+                component: PlanMiningPosition,
+                meta: { text: 'plans.mining_position', icon: 'pix' }
+            },
+            {
+                path: "excavator-truck",
+                name: 'excavator-truck',
+                component: PlanExcavatorTruck,
+                meta: { text: 'plans.excavator_truck', icon: 'pix' }
             },
         ]
     },

@@ -17,8 +17,9 @@ use App\Http\Controllers\ExcavatorFactController;
 use App\Http\Controllers\ExplosionController;
 use App\Http\Controllers\DrillingPositionController;
 use App\Http\Controllers\ExcavatorPositionController;
-
-
+use App\Http\Controllers\InputRudaController;
+use App\Http\Controllers\InputTypematerialController;
+use App\Http\Controllers\TimetableController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -131,8 +132,21 @@ Route::prefix('excavator-position')->group(function () {
     Route::controller(ExcavatorPositionController::class)->group(function () {
         Route::post('', 'index');
         Route::post('/update', 'update');
+        Route::post('/update-massa', 'updateMassa');
     });
 });
 
 
+Route::prefix('timetable')->group(function () {
+    Route::controller(TimetableController::class)->group(function () {
+        Route::post('', 'index');
+        Route::post('/update', 'update');
+    });
+});
+
+
+
+
+Route::apiResource('typematerial', InputTypematerialController::class)->only(['index']);
+Route::apiResource('input-ruda', InputRudaController::class)->only(['index']);
 Route::apiResource('truck-ability', TruckAbilityController::class)->only('index');

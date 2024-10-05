@@ -77,7 +77,10 @@ const i18n = createI18n({
 				settings_ac: "Параметры автосамосвалов",
 				gruzopodyomnost: "Грузоподъемность",
 				zagruzka: "Загрузка базовая",
-
+			},
+			plans: {
+				mining_position: "Добыча расстановка",
+				excavator_truck: "ЭКГ-АС на неделю",
 			},
 			message: {
 				search: 'Поиск',

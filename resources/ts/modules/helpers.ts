@@ -29,7 +29,7 @@ export function getSurroundingDates(selectedDate, days) {
     const result = [];
 
     // Добавляем 10 дней до выбранного дня
-    for (let i = -days; i <= days; i++) {
+    for (let i = -days; i <= days - 1; i++) {
         const currentDate = new Date(selectedDate);
         currentDate.setDate(selectedDate.getDate() + i);
         result.push(moment(currentDate).format('YYYY-MM-DD')); // Добавляем копию объекта Date
@@ -89,13 +89,73 @@ export function createDrillingPositionModels(days, drillings, drilling_positions
     return result
 }
 
+export function createExcavatorPositionModels(days, excavators, excavator_position) {
+    const result = {}
+    excavators.forEach((excavator) => {
+        days.forEach((day) => {
+            const selectOne = excavator_position.find((fact) => fact.day == day && fact.excavator_id == excavator.id && fact.change == 1)
+            result[`${excavator.id}_${day}_1`] = {
+                career_id: selectOne?.career_id,
+                download: selectOne?.download,
+                type_material: selectOne?.type_material,
+                distance: selectOne?.distance,
+            }
+        })
 
+        days.forEach((day) => {
+            const selectOne = excavator_position.find((fact) => fact.day == day && fact.excavator_id == excavator.id && fact.change == 2)
+            result[`${excavator.id}_${day}_2`] = {
+                career_id: selectOne?.career_id,
+                download: selectOne?.download,
+                type_material: selectOne?.type_material,
+                distance: selectOne?.distance,
+            }
+        })
+    })
+    return result
+}
+
+export function createTimetableModels(days, timetable, main) {
+    const result = {}
+    for (const key in timetable) {
+        timetable[key].forEach((table) => {
+            days.forEach((day) => {
+                const selectOne = main.find((fact) => fact.day == day && fact.horizon_id == table.id)
+                result[`${table.id}_${day}`] = {
+                    first: selectOne?.first,
+                    second: selectOne?.second,
+                }
+            })
+        })
+    }
+    return result
+
+}
 
 export function numberToArray(number) {
     const array = []
     for (let index = 0; index < number; index++) {
         array.push(index + 1)
     }
-
     return array
 }
+
+export function celebrate(array, key, change){
+    const distances = {}
+    array.forEach(position => {
+        if(position.change != change) return
+        distances[`${position.excavator_id}_${position.day}`] = position[key]
+    });
+    return distances
+}
+
+export function celebrateChanges(array, key){
+    const distances = {}
+    array.forEach(position => {
+        distances[`${position.excavator_id}_${position.day}`] = position[key]
+    });
+    return distances
+}
+
+
+// 5978130 Boshliq sharqiy

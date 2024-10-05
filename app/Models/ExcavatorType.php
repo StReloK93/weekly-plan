@@ -22,4 +22,5 @@ class ExcavatorType extends Model
         'hard_time',
         'count_bucket',
     ];
+
 }

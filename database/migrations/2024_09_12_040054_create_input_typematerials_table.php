@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('timetable_productions', function (Blueprint $table) {
+        Schema::create('input_typematerials', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('timetable_productions');
+        Schema::dropIfExists('input_typematerials');
     }
 };

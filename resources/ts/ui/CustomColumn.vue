@@ -2,7 +2,7 @@
    <td ref="column" class="max-w-20 border  p-0 h-6">
       <input type="number" v-model="model" @input="(event: any) => handleInput(event.target.value)"
          @keydown="handleKeydown"
-         class="w-full outline-none bg-transparent text-sm focus:bg-gray-200 focus:border focus:border-blue-400 h-full text-center focus:text-left">
+         class="w-full outline-none bg-transparent text-sm border-transparent focus:bg-gray-200 border focus:border-blue-400 h-full text-center focus:text-left">
    </td>
 </template>
 

@@ -23,6 +23,15 @@ class DatabaseSeeder extends Seeder
             TruckAbilitySeeder::class,
             NormativeSeeder::class,
             CareerSeeder::class,
+            TypematerialSeeder::class,
+            HorizonSeeder::class,
+
+
+            ExcavatorFactSeeder::class,
+            ExcavatorPositionSeeder::class,
+            DrillingPositionSeeder::class,
+            TimetableSeeder::class,
+            ExplosionSeeder::class,
         ]);
     }
 }

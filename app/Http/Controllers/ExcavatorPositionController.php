@@ -24,4 +24,16 @@ class ExcavatorPositionController extends Controller
             'distance' => $request->distance,
         ]);
     }
+
+
+    public function updateMassa(Request $request)
+    {
+        return ExcavatorPosition::updateOrCreate([
+            'excavator_id' => $request->excavator_id,
+            'day' => $request->day,
+            'change' => $request->change,
+        ], [
+            'massa' => $request->massa,
+        ]);
+    }
 }

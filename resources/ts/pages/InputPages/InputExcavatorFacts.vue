@@ -1,7 +1,7 @@
 <template>
    <section class="flex flex-col h-full">
       <aside class="pb-3">
-         <VaDateInput v-model="currentDate" @update:modelValue="getExcavatorFacts" class="bg-white" />
+         <BaseDateInput v-model="currentDate" @change="getExcavatorFacts" />
       </aside>
       <aside class="relative flex-grow">
          <main class="absolute inset-0 overflow-y-auto">

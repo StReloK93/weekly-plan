@@ -1,17 +1,17 @@
 <template>
    <section class="flex flex-col h-full">
       <aside class="pb-3">
-         <VaDateInput v-model="currentDate" @update:modelValue="getDrillingPositions" class="bg-white" />
+         <BaseDateInput v-model="currentDate" @change="getDrillingPositions"/>
       </aside>
-      <aside class="relative flex-grow">
+      <aside class="relative flex-grow z-0">
          <main class="absolute inset-0 overflow-y-auto thin-scroll">
             <table v-if="pageData.loading == false" class="h-full w-full">
-               <thead class="sticky top-0">
+               <thead class="sticky top-0 bg-white z-10">
                   <tr class="bg-white border">
-                     <th class="w-16 border py-1"> Nomi </th>
-                     <th class="w-8 border py-1"> № </th>
-                     <th class="w-8 border py-1"> <VaIcon name="dark_mode" /></th>
-                     <th v-for="day in daysList" class="w-20 text-sm border">
+                     <th class="w-16 border  py-1"> Nomi </th>
+                     <th class="w-8 border bg-white py-1"> № </th>
+                     <th class="w-8 border bg-white py-1"> <VaIcon name="dark_mode" /></th>
+                     <th v-for="day in daysList" class="w-20 text-sm border bg-white">
                         {{ moment(day).format('DD MMM') }}
                      </th>
                   </tr>

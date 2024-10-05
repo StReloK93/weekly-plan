@@ -1,7 +1,7 @@
 <template>
    <main class="flex justify-between">
       <AddDrillingForm />
-      <VaInput v-model="tableParams.filter" preset="bordered" class="w-44" :placeholder="t('message.search')">
+      <VaInput v-model="tableParams.filter" preset="bordered" class="w-44" firstWeekday="Monday" :placeholder="t('message.search')">
          <template #appendInner>
             <VaIcon name="search" color="secondary" />
          </template>

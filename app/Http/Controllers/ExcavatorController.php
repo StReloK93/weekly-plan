@@ -8,7 +8,7 @@ class ExcavatorController extends Controller
 {
     public function index()
     {
-        return Excavator::with(['type'])->get();
+        return Excavator::with(['type'])->orderByRaw('CONVERT(garage_number, SIGNED) asc')->get();
     }
 
     public function store(Request $request)

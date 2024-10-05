@@ -22,7 +22,9 @@
             </RouterLink>
          </VaNavbarItem>
          <VaNavbarItem class="hidden sm:block">
-            {{ t('message.planpage') }}
+            <RouterLink :to="{ name: 'plans' }">
+               {{ t('message.planpage') }}
+            </RouterLink>
          </VaNavbarItem>
          <VaNavbarItem class="hidden sm:block">
             {{ t('message.resultpage') }}
@@ -45,6 +47,7 @@ const languages = computed(() => availableLocales.map((locale) => {
 
 if (localStorage.getItem('locale')) {
    const userLocale = localStorage.getItem('locale')
+   
    locale.value = userLocale
 }
 watch(() => locale.value, (newValue) => {
