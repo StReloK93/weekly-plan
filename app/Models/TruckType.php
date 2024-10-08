@@ -13,5 +13,7 @@ class TruckType extends Model
     protected $fillable = [
         'name',
         'tonnage',
+        'volume_mass_ruda',
+        'volume_mass_top',
     ];
 }

@@ -55,6 +55,12 @@ const i18n = createI18n({
 				plan: "План",
 				fact: "Факт",
 			},
+			results: {
+				excavator_position: "План Расстановка ЭКГ",
+				excavator: "План по ЭКГ",
+				drilling_position: "План Расстановка Бур",
+				explosion_schedule: "План взрывов",
+			},
 			normative: {
 				reglament_normatives_po: "Нормативы на регламентированные простои ПО",
 				lunch: "Обед",

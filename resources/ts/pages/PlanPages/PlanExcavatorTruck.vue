@@ -16,9 +16,7 @@
          <main class="absolute inset-0 overflow-y-auto thin-scroll">
             <table v-if="pageData.loading == false" class="w-full">
                <thead class="sticky top-0 bg-white z-10">
-                  <tr class="bg-white">
-                     <th class="min-w-28 border py-1" colspan="100%"> {{ currentDateFormatted }} (1 - Smena)</th>
-                  </tr>
+
                   <tr class="bg-white">
                      <th class="min-w-28 border py-1 text-xs px-1 text-left"> Гараж.№ </th>
                      <th class="min-w-28 border py-1 text-xs px-1 text-left"> O'.birligi </th>
@@ -28,14 +26,22 @@
                   </tr>
                   <PlanExcavaTruckRow :data="pageData.excavators" title="Длина цикла" subTitle="мин">
                      <template #default="{ item }">
-                        {{ item.type.full_time_ac}}
+                        {{ TruckAverage }}
+                     </template>
+                  </PlanExcavaTruckRow>
+                  <PlanExcavaTruckRow :data="pageData.excavators" title="Длина цикла" subTitle="мин">
+                     <template #default="{ item }">
+                        {{ item.type.full_time_ac }}
                      </template>
                   </PlanExcavaTruckRow>
                   <PlanExcavaTruckRow :data="pageData.excavators" title="Кол-во погрузок в час максимум" subTitle="ед">
                      <template #default="{ item }">
-                        {{ (60/+item.type.full_time_ac).toFixed(1) }}
+                        {{ (60 / +item.type.full_time_ac).toFixed(1) }}
                      </template>
                   </PlanExcavaTruckRow>
+                  <tr class="bg-white">
+                     <th class="min-w-28 border py-1" colspan="100%"> {{ currentDateFormatted }} (1 - Smena)</th>
+                  </tr>
                </thead>
                <tbody>
                   <PlanExcavaTruckRow class="bg-slate-200" :data="pageData.excavators" title="1 смена ГМ" :column="true"
@@ -70,7 +76,11 @@
                         {{ distance_one?.[`${item.id}_${selectedDay}`] }}
                      </template>
                   </PlanExcavaTruckRow>
-
+                  <PlanExcavaTruckRow :data="pageData.excavators" title="Место разгрузки">
+                     <template #default="{ item }">
+                        {{ Math.round(massa_one[`${item.id}_${selectedDay}`] / TruckAverage) }}
+                     </template>
+                  </PlanExcavaTruckRow>
 
                   <tr class="bg-white">
                      <th class="min-w-28 border py-1" colspan="100%"> {{ currentDateFormatted }} (2 - Smena)</th>
@@ -97,7 +107,7 @@
                   </PlanExcavaTruckRow>
                   <PlanExcavaTruckRow :data="pageData.excavators" title="Место разгрузки">
                      <template #default="{ item }">
-                        {{ download_two[`${item.id}_${selectedDay}`]?.name }}
+                        {{ download_two[`${item.id}_${selectedDay}`]?.name }} {{ massa_two[`${item.id}_${selectedDay}`] }}
                      </template>
                   </PlanExcavaTruckRow>
                   <PlanExcavaTruckRow :data="pageData.excavators" title="Тип материала">
@@ -110,6 +120,11 @@
                         {{ distance_two?.[`${item.id}_${selectedDay}`] }}
                      </template>
                   </PlanExcavaTruckRow>
+                  <PlanExcavaTruckRow :data="pageData.excavators" title="Место разгрузки">
+                     <template #default="{ item }">
+                        {{ Math.round(massa_two[`${item.id}_${selectedDay}`] / TruckAverage) }}
+                     </template>
+                  </PlanExcavaTruckRow>
                </tbody>
             </table>
             <VaSkeleton v-else width="100%" height="100%" />
@@ -119,12 +134,13 @@
 </template>
 
 <script setup lang="ts">
-import { getSurroundingDates, celebrate } from '@modules/helpers';
+import { getSurroundingDates, celebrate, changeExcavatorMassa } from '@modules/helpers';
 import ExcavatorRepository from '@/entities/Excavator/ExcavatorRepository';
 import ExcavatorFactRepository from '@/entities/ExcavatorFact/ExcavatorFactRepository';
 import ExcavatorPositionRepository from '@excavator-position/ExcavatorPositionRepository'
+import TruckTypeRepository from '@/entities/TruckType/TruckTypeRepository';
 import { useTableActions } from '@modules/useTableActions';
-import { computed, onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref, ComputedRef } from 'vue';
 import PlanExcavaTruckRow from '@/ui/PlanExcavaTruckRow.vue';
 import { moment } from '@modules/moment'
 const currentDate = ref(new Date())
@@ -141,6 +157,8 @@ const pageData = reactive({
    excavators: [],
    excavators_positions: [],
    excavators_facts: [],
+   truck_types: [],
+
 
 })
 
@@ -152,6 +170,7 @@ function onSaveMassa(excavator_id, day, change, massa) {
       change: change,
       massa: massa,
    })
+   changeExcavatorMassa(pageData.excavators_positions, day, change, excavator_id, massa)
 }
 
 async function getPageInformation() {
@@ -163,7 +182,7 @@ async function getPageInformation() {
          endDay: daysList.value.at(-1)
       })
       pageData.excavators_positions = excavators_position
-      
+
       const { data: excavators_facts } = await ExcavatorFactRepository.index({
          startDay: daysList.value[0],
          endDay: daysList.value.at(-1)
@@ -179,6 +198,12 @@ async function getPageInformation() {
    }
 }
 
+const TruckAverage: ComputedRef<number> = computed(() => {
+   const averageTonnage = pageData.truck_types.reduce((accum, total) => accum = accum + total.tonnage / (+total.volume_mass_top), 0)
+   return +(averageTonnage / pageData.truck_types.length).toFixed(2)
+})
+
+
 const distance_one = computed(() => celebrate(pageData.excavators_positions, 'distance', 1))
 const career_one = computed(() => celebrate(pageData.excavators_positions, 'horizon', 1))
 const material_one = computed(() => celebrate(pageData.excavators_positions, 'material', 1))
@@ -192,12 +217,17 @@ const download_two = computed(() => celebrate(pageData.excavators_positions, 'do
 const massa_two = computed(() => celebrate(pageData.excavators_positions, 'massa', 2))
 
 
+
 onMounted(async () => {
    const { data: excavators } = await ExcavatorRepository.index()
    pageData.excavators = excavators
+
+
+   const { data: truck_types } = await TruckTypeRepository.index()
+   pageData.truck_types = truck_types
+
+
    pageData.loading = false
-
-
    getPageInformation()
 })
 </script>

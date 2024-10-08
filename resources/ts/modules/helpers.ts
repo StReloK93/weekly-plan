@@ -99,6 +99,7 @@ export function createExcavatorPositionModels(days, excavators, excavator_positi
                 download: selectOne?.download,
                 type_material: selectOne?.type_material,
                 distance: selectOne?.distance,
+                massa: selectOne?.massa,
             }
         })
 
@@ -109,6 +110,7 @@ export function createExcavatorPositionModels(days, excavators, excavator_positi
                 download: selectOne?.download,
                 type_material: selectOne?.type_material,
                 distance: selectOne?.distance,
+                massa: selectOne?.massa,
             }
         })
     })
@@ -157,5 +159,9 @@ export function celebrateChanges(array, key){
     return distances
 }
 
+export function changeExcavatorMassa(array, day, change, excavator_id, value){
+    const selected = array.find((position) => position.excavator_id == excavator_id && position.change == change && position.day == day)
+    selected.massa = value
+}
 
 // 5978130 Boshliq sharqiy

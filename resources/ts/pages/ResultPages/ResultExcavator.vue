@@ -1,7 +1,7 @@
 <template>
    <section class="flex flex-col h-full">
       <aside class="pb-3">
-         <BaseDateInput v-model="currentDate" @change="getDrillingPositions" />
+         <BaseDateInput v-model="currentDate" @change="getPositions" />
       </aside>
       <aside class="relative flex-grow z-0">
          <main class="absolute inset-0 overflow-y-auto thin-scroll">
@@ -13,7 +13,7 @@
                      <th class="min-w-8 border py-1" rowspan="2">
                         <VaIcon name="dark_mode" />
                      </th>
-                     <th v-for="day in daysList" class="w-20 text-sm border" colspan="4">
+                     <th v-for="day in daysList" class="w-20 text-sm border" colspan="3">
                         {{ moment(day).format('DD MMM') }}
                      </th>
                   </tr>
@@ -23,13 +23,10 @@
                            Место погрузки
                         </td>
                         <td class="min-w-24 text-sm text-center font-semibold border">
-                           Место разгрузки
+                           План на смену
                         </td>
                         <td class="min-w-24 text-sm text-center font-semibold border">
                            Тип материала
-                        </td>
-                        <td class="min-w-24 text-sm text-center font-semibold border">
-                           Расстояния
                         </td>
                      </template>
                   </tr>
@@ -44,32 +41,35 @@
                      <th class="w-8 text-sm border border-b-gray-400" rowspan="2">
                         {{ excavator.garage_number }}
                      </th>
-                     <th class="w-8 text-sm border">
+                     <th class="w-8 text-sm border border-r-gray-600">
                         1
                      </th>
                      <template v-for="(day, colIndex) in daysList" :key="colIndex">
-                        <SelectColumn v-for="item in options" :options="pageData[item.options]" picker="id"
-                           v-model="formDataModels[`${excavator.id}_${day}_1`][item.model]"
-                           @save="onSaveChanges(excavator.id, day, 1, formDataModels[`${excavator.id}_${day}_1`])"
-                           :renderer="item.renderer" />
-
-                        <Column v-model="formDataModels[`${excavator.id}_${day}_1`]['distance']"
-                           @save="onSaveChanges(excavator.id, day, 1, formDataModels[`${excavator.id}_${day}_1`])"
-                           class=" border-r-gray-400" />
+                        <td class="text-sm border px-2 py-0.5">
+                           {{ horizon_renderer(formDataModels[`${excavator.id}_${day}_1`]['career_id']) }}
+                        </td>
+                        <td class="text-sm border px-2 py-0.5">
+                           {{ formDataModels[`${excavator.id}_${day}_2`]['massa'] }}
+                        </td>
+                        <td class="text-sm border px-2 py-0.5 border-r-gray-600">
+                           {{ type_material_renderer(formDataModels[`${excavator.id}_${day}_1`]['type_material']) }}
+                        </td>
                      </template>
                   </tr>
                   <tr class="bg-gray-100">
-                     <th class="w-8 text-sm border border-b-gray-400">
+                     <th class="w-8 text-sm border border-b-gray-400 border-r-gray-600">
                         2
                      </th>
                      <template v-for="(day, colIndex) in daysList" :key="colIndex">
-                        <SelectColumn v-for="item in options" :options="pageData[item.options]" picker="id"
-                           v-model="formDataModels[`${excavator.id}_${day}_2`][item.model]"
-                           @save="onSaveChanges(excavator.id, day, 2, formDataModels[`${excavator.id}_${day}_2`])"
-                           :renderer="item.renderer" class="border-b-gray-400" />
-                        <Column v-model="formDataModels[`${excavator.id}_${day}_2`]['distance']"
-                           @save="onSaveChanges(excavator.id, day, 2, formDataModels[`${excavator.id}_${day}_2`])"
-                           class="border-b-gray-400 border-r-gray-400" />
+                        <td class="text-sm border px-2 py-0.5 border-b-gray-400">
+                           {{ horizon_renderer(formDataModels[`${excavator.id}_${day}_2`]['career_id']) }}
+                        </td>
+                        <td class="text-sm border px-2 py-0.5 border-b-gray-400">
+                           {{ formDataModels[`${excavator.id}_${day}_2`]['massa'] }}
+                        </td>
+                        <td class="text-sm border px-2 py-0.5 border-b-gray-400 border-r-gray-600">
+                           {{ type_material_renderer(formDataModels[`${excavator.id}_${day}_2`]['type_material']) }}
+                        </td>
                      </template>
                   </tr>
                </template>
@@ -86,11 +86,8 @@ import Repository from '@excavator-position/ExcavatorPositionRepository'
 import HorizonRepository from '@/entities/Horizon/HorizonRepository';
 import ExcavatorRepository from '@/entities/Excavator/ExcavatorRepository';
 import TypematerialRepository from '@/entities/Typematerial/TypematerialRepository';
-import InputRudaRepository from '@/entities/InputRuda/InputRudaRepository';
 import moment from 'moment'
 import { computed, onMounted, reactive, ref } from 'vue';
-import { useTableActions } from '@modules/useTableActions';
-const { SelectColumn, Column } = useTableActions()
 const currentDate = ref(new Date())
 const daysList = computed(() => getSurroundingDates(currentDate.value, 7))
 
@@ -101,31 +98,22 @@ const pageData = reactive({
    excavators: [],
    loading: true,
    horizons: [],
-   input_rudas: [],
    type_materials: [],
 })
 
-const options = [
-   { model: 'career_id', options: 'horizons', renderer: (option) => `${option.career?.shortname}_${option.code}` },
-   { model: 'download', options: 'input_rudas', renderer: (option) => `${option.name}` },
-   { model: 'type_material', options: 'type_materials', renderer: (option) => `${option.name}` },
-]
-
-async function onSaveChanges(excavator_id, day, change, model) {
-
-   Repository.update({
-      career_id: model.career_id == "" ? null : model.career_id,
-      download: model.download == "" ? null : model.download,
-      type_material: model.type_material == "" ? null : model.type_material,
-      distance: model.distance == "" ? null : model.distance,
-
-      day: day,
-      excavator_id: excavator_id,
-      change: change,
-   })
+function horizon_renderer(horizon_id) {
+   const horizon = pageData.horizons.find((option) => option.id == horizon_id)
+   if (horizon) return `${horizon?.career?.shortname}_${horizon?.code}`
+   else return ""
 }
 
-async function getDrillingPositions() {
+function type_material_renderer(horizon_id) {
+   const material = pageData.type_materials.find((option) => option.id == horizon_id)
+   if (material) return material.name
+   else return ""
+}
+
+async function getPositions() {
    formDataModels.value = {}
    pageData.loading = true
    try {
@@ -145,12 +133,11 @@ async function getDrillingPositions() {
 onMounted(async () => {
    HorizonRepository.index().then(({ data }) => pageData.horizons = data)
    TypematerialRepository.index().then(({ data }) => pageData.type_materials = data)
-   InputRudaRepository.index().then(({ data }) => pageData.input_rudas = data)
    const { data: excavators } = await ExcavatorRepository.index()
    pageData.excavators = excavators
 
    formDataModels.value = createExcavatorPositionModels(daysList.value, pageData.excavators, [])
 
-   getDrillingPositions()
+   getPositions()
 })
 </script>

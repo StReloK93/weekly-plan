@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('tonnage');
+            $table->decimal('volume_mass_ruda', 8, 2)->nullable();
+            $table->decimal('volume_mass_top', 8, 2)->nullable();
         });
     }
 

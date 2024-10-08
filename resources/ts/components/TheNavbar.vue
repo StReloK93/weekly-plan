@@ -27,7 +27,9 @@
             </RouterLink>
          </VaNavbarItem>
          <VaNavbarItem class="hidden sm:block">
-            {{ t('message.resultpage') }}
+            <RouterLink :to="{ name: 'results' }">
+               {{ t('message.resultpage') }}
+            </RouterLink>
          </VaNavbarItem>
       </template>
       <template #right>

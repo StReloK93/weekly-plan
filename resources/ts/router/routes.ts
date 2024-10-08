@@ -12,8 +12,14 @@ import InputExcavatorPosition from '@/pages/InputPages/InputExcavatorPosition.vu
 import InputTimetableProduction from '@/pages/InputPages/InputTimetableProduction.vue';
 import InputExplosionSchedule from '@/pages/InputPages/InputExplosionSchedule.vue';
 
+
 import PlanMiningPosition from '@/pages/PlanPages/PlanMiningPosition.vue';
 import PlanExcavatorTruck from '@/pages/PlanPages/PlanExcavatorTruck.vue';
+
+import ResultExcavatorPosition from '@/pages/ResultPages/ResultExcavatorPosition.vue';
+import ResultExcavator from '@/pages/ResultPages/ResultExcavator.vue';
+import ResultDrillingPosition from '@/pages/ResultPages/ResultDrillingPosition.vue';
+import ResultExplosionSchedule from '@/pages/ResultPages/ResultExplosionSchedule.vue';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -121,6 +127,38 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'excavator-truck',
                 component: PlanExcavatorTruck,
                 meta: { text: 'plans.excavator_truck', icon: 'pix' }
+            },
+        ]
+    },
+    {
+        path: '/results',
+        name: 'results',
+        component: () => import('@/pages/ResultsPage.vue'),
+        redirect: { name: 'result-excavator-position' },
+        children: [
+            {
+                path: "result-excavator-position",
+                name: 'result-excavator-position',
+                component: ResultExcavatorPosition,
+                meta: { text: 'results.excavator_position' }
+            },
+            {
+                path: "result-excavator",
+                name: 'result-excavator',
+                component: ResultExcavator,
+                meta: { text: 'results.excavator' }
+            },
+            {
+                path: "drilling-position",
+                name: 'drilling-position',
+                component: ResultDrillingPosition,
+                meta: { text: 'results.drilling_position' }
+            },
+            {
+                path: "explosion-schedule",
+                name: 'explosion-schedule',
+                component: ResultExplosionSchedule,
+                meta: { text: 'results.explosion_schedule' }
             },
         ]
     },
