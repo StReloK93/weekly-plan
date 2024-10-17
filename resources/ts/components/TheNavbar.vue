@@ -6,11 +6,11 @@
          </VaNavbarItem>
       </template>
       <template #center>
-         <VaNavbarItem class="hidden sm:block">
+         <!-- <VaNavbarItem class="hidden sm:block">
             <RouterLink :to="{ name: 'home' }">
                {{ t('message.indexpage') }}
             </RouterLink>
-         </VaNavbarItem>
+         </VaNavbarItem> -->
          <VaNavbarItem class="hidden sm:block">
             <RouterLink :to="{ name: 'guides' }">
                {{ t('message.guidepage') }}

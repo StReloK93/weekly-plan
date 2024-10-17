@@ -45,12 +45,11 @@
     "isEntry": true
   },
   "resources/ts/app.ts": {
-    "file": "assets/app-CN9J7qdU.js",
+    "file": "assets/app-C_dBIq52.js",
     "name": "app",
     "src": "resources/ts/app.ts",
     "isEntry": true,
     "dynamicImports": [
-      "resources/ts/pages/IndexPage.vue",
       "resources/ts/pages/GuidesPage.vue",
       "resources/ts/pages/InputsPage.vue",
       "resources/ts/pages/PlansPage.vue",
@@ -73,7 +72,7 @@
     ]
   },
   "resources/ts/pages/GuidesPage.vue": {
-    "file": "assets/GuidesPage-nNUfGrDr.js",
+    "file": "assets/GuidesPage-CFQBGKBY.js",
     "name": "GuidesPage",
     "src": "resources/ts/pages/GuidesPage.vue",
     "isDynamicEntry": true,
@@ -81,17 +80,8 @@
       "resources/ts/app.ts"
     ]
   },
-  "resources/ts/pages/IndexPage.vue": {
-    "file": "assets/IndexPage-DEiweFMh.js",
-    "name": "IndexPage",
-    "src": "resources/ts/pages/IndexPage.vue",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/ts/app.ts"
-    ]
-  },
   "resources/ts/pages/InputsPage.vue": {
-    "file": "assets/InputsPage-B8cs-asu.js",
+    "file": "assets/InputsPage-hw6vFmNc.js",
     "name": "InputsPage",
     "src": "resources/ts/pages/InputsPage.vue",
     "isDynamicEntry": true,
@@ -100,7 +90,7 @@
     ]
   },
   "resources/ts/pages/PlansPage.vue": {
-    "file": "assets/PlansPage-mGEsZMLf.js",
+    "file": "assets/PlansPage-BB4Yqi3k.js",
     "name": "PlansPage",
     "src": "resources/ts/pages/PlansPage.vue",
     "isDynamicEntry": true,
@@ -109,7 +99,7 @@
     ]
   },
   "resources/ts/pages/ResultsPage.vue": {
-    "file": "assets/ResultsPage-DqeT2LUb.js",
+    "file": "assets/ResultsPage-DeKT5dYy.js",
     "name": "ResultsPage",
     "src": "resources/ts/pages/ResultsPage.vue",
     "isDynamicEntry": true,

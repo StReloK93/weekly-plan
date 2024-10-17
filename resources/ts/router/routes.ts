@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '',
         name: 'home',
-        component: () => import('@/pages/IndexPage.vue')
+        redirect: {name: 'guides' }
     },
     {
         path: '/guides',
