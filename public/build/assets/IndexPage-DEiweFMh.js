@@ -1,0 +1,1 @@
+import{c as r,o as s}from"./app-CN9J7qdU.js";const a=(e,t)=>{const c=e.__vccOpts||e;for(const[n,o]of t)c[n]=o;return c},_={};function f(e,t){return s(),r("section",null," Index page ")}const p=a(_,[["render",f]]);export{p as default};
