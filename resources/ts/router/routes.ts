@@ -11,6 +11,9 @@ import InputDrillingPosition from '@/pages/InputPages/InputDrillingPosition.vue'
 import InputExcavatorPosition from '@/pages/InputPages/InputExcavatorPosition.vue';
 import InputTimetableProduction from '@/pages/InputPages/InputTimetableProduction.vue';
 import InputExplosionSchedule from '@/pages/InputPages/InputExplosionSchedule.vue';
+import InputTruckToir from '@/pages/InputPages/InputTruckToir.vue';
+import InputDrillingToir from '@/pages/InputPages/InputDrillingToir.vue';
+import InputExcavatorToir from '@/pages/InputPages/InputExcavatorToir.vue';
 
 
 import PlanMiningPosition from '@/pages/PlanPages/PlanMiningPosition.vue';
@@ -107,6 +110,24 @@ const routes: Array<RouteRecordRaw> = [
                 component: InputExplosionSchedule,
                 meta: { text: 'inputs.explosion_schedule', icon: 'alarm_add' }
             },
+            {
+                path: "truck-toir",
+                name: 'truck-toir',
+                component: InputTruckToir,
+                meta: { text: 'inputs.truck_toir', icon: 'blur_on' }
+            },
+            {
+                path: "drilling-toir",
+                name: 'drilling-toir',
+                component: InputDrillingToir,
+                meta: { text: 'inputs.drilling_toir', icon: 'blur_on' }
+            },
+            {
+                path: "excavator-toir",
+                name: 'excavator-toir',
+                component: InputExcavatorToir,
+                meta: { text: 'inputs.excavator_toir', icon: 'blur_on' }
+            },
         ]
     },
 
@@ -149,14 +170,14 @@ const routes: Array<RouteRecordRaw> = [
                 meta: { text: 'results.excavator' }
             },
             {
-                path: "drilling-position",
-                name: 'drilling-position',
+                path: "result-drilling-position",
+                name: 'result-drilling-position',
                 component: ResultDrillingPosition,
                 meta: { text: 'results.drilling_position' }
             },
             {
-                path: "explosion-schedule",
-                name: 'explosion-schedule',
+                path: "result-explosion-schedule",
+                name: 'result-explosion-schedule',
                 component: ResultExplosionSchedule,
                 meta: { text: 'results.explosion_schedule' }
             },

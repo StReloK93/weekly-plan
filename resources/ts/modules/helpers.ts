@@ -82,8 +82,24 @@ export function createDrillingPositionModels(days, drillings, drilling_positions
             const selectOne = drilling_positions.find((expo) => expo.day == day && expo.drilling_id == drilling.id && expo.change == 2)
             result[`${drilling.id}_${day}_2`] = selectOne?.career_id
         });
+    });
 
-        
+    return result
+}
+
+export function createToirModels(days, transports, main_array, key) {
+    const result = {}
+    transports.forEach(transport => {
+        days.forEach(day => {
+            const selectOne = main_array.find((expo) => expo.day == day && expo[key] == transport.id && expo.change == 1)
+            result[`${transport.id}_${day}_1`] = selectOne?.value
+        });
+
+
+        days.forEach(day => {
+            const selectOne = main_array.find((expo) => expo.day == day && expo[key] == transport.id && expo.change == 2)
+            result[`${transport.id}_${day}_2`] = selectOne?.value
+        });
     });
 
     return result

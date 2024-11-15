@@ -20,7 +20,9 @@ use App\Http\Controllers\ExcavatorPositionController;
 use App\Http\Controllers\InputRudaController;
 use App\Http\Controllers\InputTypematerialController;
 use App\Http\Controllers\TimetableController;
-
+use App\Http\Controllers\TruckToirController;
+use App\Http\Controllers\DrillingToirController;
+use App\Http\Controllers\ExcavatorToirController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -144,8 +146,26 @@ Route::prefix('timetable')->group(function () {
     });
 });
 
+Route::prefix('truck-toir')->group(function () {
+    Route::controller(TruckToirController::class)->group(function () {
+        Route::post('', 'index');
+        Route::post('/update', 'update');
+    });
+});
 
+Route::prefix('drilling-toir')->group(function () {
+    Route::controller(DrillingToirController::class)->group(function () {
+        Route::post('', 'index');
+        Route::post('/update', 'update');
+    });
+});
 
+Route::prefix('excavator-toir')->group(function () {
+    Route::controller(ExcavatorToirController::class)->group(function () {
+        Route::post('', 'index');
+        Route::post('/update', 'update');
+    });
+});
 
 Route::apiResource('typematerial', InputTypematerialController::class)->only(['index']);
 Route::apiResource('input-ruda', InputRudaController::class)->only(['index']);

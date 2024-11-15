@@ -52,6 +52,10 @@ const i18n = createI18n({
 				drilling_positions: "Расстановка БУ",
 				timetable_production: "График добычи",
 				explosion_schedule: "График взрывов",
+				truck_toir: "График ТОиР АС",
+				drilling_toir: "График ТОиР БУ",
+				excavator_toir: "График ТОиР ЭКС",
+
 				plan: "План",
 				fact: "Факт",
 			},
