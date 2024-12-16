@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('day');
             $table->integer('value')->nullable();
             $table->integer('change');
-            $table->timestamps();
+            $table->timestamps(3);
 
             $table->unique(['drilling_id', 'day', 'change']);
         });

@@ -18,19 +18,16 @@ class TimetableSeeder extends Seeder
         //
         $drilling_ids = Horizon::all()->pluck('id');
 
-        $facts = [];
-
         foreach ($drilling_ids as $key => $drilling_id) {
             foreach ($days as $key => $day) {
-                $facts[] = [
+                Timetable::insert([
                     'horizon_id' => $drilling_id,
                     'day' => $day,
                     'first' => DateHelper::getRandomMidlle(1, 6, 10),
                     'second' => DateHelper::getRandomMidlle(1, 3, 100),
-                ];
+                ]);
             }
         }
 
-        Timetable::insert($facts);
     }
 }

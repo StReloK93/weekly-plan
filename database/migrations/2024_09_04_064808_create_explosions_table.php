@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('career_id')->nullable();
             $table->date('day');
             $table->integer('number');
-            $table->timestamps();
+            $table->timestamps(3);
         });
     }
 

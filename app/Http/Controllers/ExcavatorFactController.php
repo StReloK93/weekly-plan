@@ -15,7 +15,6 @@ class ExcavatorFactController extends Controller
 
     public function factUpdate(Request $request)
     {
-
         return ExcavatorFact::updateOrCreate([
             'excavator_id' => $request->excavator_id,
             'day' => $request->day,
@@ -30,7 +29,8 @@ class ExcavatorFactController extends Controller
             'excavator_id' => $request->excavator_id,
             'day' => $request->day,
         ], [
-            'plan' => $request->plan
-        ]);
+            'plan' => $request->plan,
+        ]);;
+
     }
 }

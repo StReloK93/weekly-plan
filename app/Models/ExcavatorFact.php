@@ -21,5 +21,7 @@ class ExcavatorFact extends Model
     protected $casts = [
         'plan' => 'decimal:2',
         'fact' => 'decimal:2',
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
 }

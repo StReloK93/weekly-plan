@@ -9,12 +9,18 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class ExcavatorPosition extends Model
 {
     use HasFactory;
-    
+    public $timestamps = false;
     protected $with = [
         'horizon',
         'material',
         'down'
     ];
+
+
+    protected $casts = [
+        'distance' => 'decimal:2',
+    ];
+
 
     protected $fillable = [
         'excavator_id',

@@ -21,8 +21,6 @@ return new class extends Migration
             $table->integer('type_material')->nullable();
             $table->double('distance', 8, 2)->nullable();
             $table->double('massa', 8, 2)->nullable();
-            $table->timestamps();
-
 
             $table->unique(['excavator_id', 'day', 'change']);
         });

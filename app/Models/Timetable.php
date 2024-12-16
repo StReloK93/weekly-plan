@@ -18,4 +18,9 @@ class Timetable extends Model
         'second'
     ];
 
+
+    protected $casts = [
+        'first' => 'float',
+        'second' => 'float',
+    ];
 }

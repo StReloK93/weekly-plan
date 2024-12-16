@@ -25,22 +25,22 @@ class DrillingPositionSeeder extends Seeder
             $randomHorizon = Horizon::inRandomOrder()->first();
             
             foreach ($days as $key => $day) {
-                $facts[] = [
+
+                DrillingPosition::insert([
                     'drilling_id' => $drilling_id,
                     'day' => $day,
                     'career_id' => $randomHorizon->id,
                     'change' => 1,
-                ];
-
-                $facts[] = [
+                ]);
+                DrillingPosition::insert([
                     'drilling_id' => $drilling_id,
                     'day' => $day,
                     'career_id' => $randomHorizon->id,
                     'change' => 2,
-                ];
+                ]);
+
             }
         }
 
-        DrillingPosition::insert($facts);
     }
 }

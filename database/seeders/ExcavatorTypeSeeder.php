@@ -13,18 +13,20 @@ class ExcavatorTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        ExcavatorType::insert([
+
+
+        $excavatorsTypes = [
             [
                 'name' => 'ЭКГ-5А',
                 'bucket_volume' => 5.00,
                 'normal_procent' => 0.90,
                 'easy_procent' => 1.01,
-                'hard_procent' => 0.85,
+                'hard_procent' => 1.85,
                 'normal_time' => 30,
                 'easy_time' => 30,
                 'hard_time' => 43,
                 'count_bucket' => 12,
-                'full_time_ac' => 5.7,
+                'full_time_ac' => 5.70,
             ],
             [
                 'name' => 'Hitachi-1200/6',
@@ -74,6 +76,12 @@ class ExcavatorTypeSeeder extends Seeder
                 'count_bucket' => 10,
                 'full_time_ac' => 6,
             ],
-        ]);
+        ];
+
+
+        foreach ($excavatorsTypes as $key => $type) {
+            ExcavatorType::create($type);
+        }
+
     }
 }

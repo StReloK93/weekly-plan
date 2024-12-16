@@ -12,7 +12,7 @@ class DrillingTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        DrillingType::insert([
+        $types = [
             [
                 'name' => 'СБШ-250',
                 'speed_per_min' => 4.2,
@@ -58,6 +58,11 @@ class DrillingTypeSeeder extends Seeder
                 'montage' => 1.8,
                 'drilling' => 7.6,
             ],
-        ]);
+        ];
+
+        foreach ($types as $key => $value) {
+            DrillingType::create($value);
+        }
+
     }
 }

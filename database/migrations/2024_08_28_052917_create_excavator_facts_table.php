@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('day');
             $table->double('plan', 8, 2)->nullable();
             $table->double('fact', 8, 2)->nullable();
-            $table->timestamps();
+            $table->timestamps(3);
             
             $table->unique(['day', 'excavator_id']);
         });

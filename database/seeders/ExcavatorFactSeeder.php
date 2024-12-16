@@ -17,23 +17,19 @@ class ExcavatorFactSeeder extends Seeder
         $days = DateHelper::getCurrentWeekDays();
         //
         $excavator_ids = Excavator::all()->pluck('id');
-
-        $facts = [];
-
         foreach ($excavator_ids as $key => $excavator_id) {
             $randomPlan = DateHelper::getRandomMidlle(3, 10, 2);
             foreach ($days as $key => $day) {
                 $prosent = rand(60, 125);
                 $randomFact = ($randomPlan/100) * $prosent;
-                $facts[] = [
+                ExcavatorFact::insert([
                     'excavator_id' => $excavator_id,
                     'day' => $day,
                     'plan' => $randomPlan,
                     'fact' => $randomFact,
-                ];
+                ]);
             }
         }
 
-        ExcavatorFact::insert($facts);
     }
 }

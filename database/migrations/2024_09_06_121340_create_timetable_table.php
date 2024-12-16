@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('day');
             $table->decimal('first', 8, 2)->nullable();
             $table->decimal('second', 8, 2)->nullable();
-            $table->timestamps();
+            $table->timestamps(3);
         });
     }
 

@@ -33,7 +33,8 @@ class ExcavatorPositionSeeder extends Seeder
             foreach ($days as $key => $day) {
                 $randomMassa = DateHelper::getRandomMidlle(1, 6, 2);
                 $randomDistance = DateHelper::getRandomMidlle(1, 3, 10);
-                $facts[] = [
+
+                ExcavatorPosition::create([
                     'excavator_id' => $excavator_id,
                     'day' => $day,
                     'career_id' => $randomHorizon->id,
@@ -42,9 +43,9 @@ class ExcavatorPositionSeeder extends Seeder
                     'type_material' => $randomTypeMaterial->id,
                     'distance' => $randomDistance,
                     'massa' => $randomMassa * 1000,
-                ];
+                ]);
 
-                $facts[] = [
+                ExcavatorPosition::create([
                     'excavator_id' => $excavator_id,
                     'day' => $day,
                     'career_id' => $randomHorizon->id,
@@ -53,12 +54,8 @@ class ExcavatorPositionSeeder extends Seeder
                     'type_material' => $randomTypeMaterial->id,
                     'distance' => $randomDistance,
                     'massa' => $randomMassa * 1000,
-                ];
+                ]);
             }
         }
-
-
-
-        ExcavatorPosition::insert($facts);
     }
 }

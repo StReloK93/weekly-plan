@@ -88,12 +88,11 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', true),
-            'options'   => [
-                PDO::ATTR_CASE => PDO::CASE_NATURAL,
-                PDO::SQLSRV_ATTR_DIRECT_QUERY => true,
-            ],
+            'trust_server_certificate' => true,
             'trusted_connection' => env('DB_TRUSTED_CONNECTION', true),
+            'options'   => [
+                PDO::ATTR_STRINGIFY_FETCHES => false, // Для работы с датами как строками
+            ],
         ],
 
     ],
